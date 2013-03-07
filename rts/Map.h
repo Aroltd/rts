@@ -45,7 +45,7 @@ namespace rts {
 		void setView(long,long);
 		void changeView(long,long);
 
-		void Render(sf::RenderWindow*);
+		void Render(sf::RenderWindow*,int=0);
 	};
 };
 

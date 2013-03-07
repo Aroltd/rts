@@ -9,10 +9,10 @@
 
 int main() {
 	//sf::RenderWindow rw(sf::VideoMode::getDesktopMode(), "test", sf::Style::Fullscreen);
-	sf::RenderWindow rw(sf::VideoMode(800, 600), "test");
+	sf::RenderWindow rw(sf::VideoMode(800, 800), "test");
 	rw.setFramerateLimit(60);
 
-	rts::Map gameMap(24);
+	rts::Map gameMap(32);
 
 	long mclk = 0;
 	sf::Clock uclk;
@@ -22,6 +22,8 @@ int main() {
         while (rw.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 rw.close();
+			if (event.type == sf::Event::Resized)
+				rw.setSize(sf::Vector2u(event.size.width,event.size.height));
         }
 		
 		rw.clear();
@@ -40,7 +42,14 @@ int main() {
 				gameMap.changeView(4,0);
 		}
 
-		gameMap.Render(&rw);
+		sf::RectangleShape test(sf::Vector2f(400,400));
+		test.setFillColor(sf::Color(0,0,0,0));
+		test.setOutlineColor(sf::Color(255,255,255));
+		test.setOutlineThickness(4);
+		test.setPosition(200,200);
+
+		gameMap.Render(&rw,200);
+		rw.draw(test);
 
 		rw.display();
 	}

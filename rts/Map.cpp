@@ -70,9 +70,11 @@ void rts::Map::changeView(long x, long y) {
 		viewy = (viewy+y<0)?0:h;
 }
 
-void rts::Map::Render(sf::RenderWindow *rw) {
-	int cw = rw->getSize().x;
-	int ch = rw->getSize().y;
+void rts::Map::Render(sf::RenderWindow *rw, int offset) {
+	//int cw = rw->getSize().x;
+	int cw = 400;
+	//int ch = rw->getSize().y;
+	int ch = 400;
 
 	for(int y = 0; y < tileCount; y++) {
 		for(int x = 0; x < tileCount; x++) {
@@ -82,10 +84,10 @@ void rts::Map::Render(sf::RenderWindow *rw) {
 				 tx1 = tx0 + TILE_W,
 				 ty1 = tx1 + TILE_H;
 
-			//if((ty0 >= viewy && ty1 <= viewy+ch) && (tx1 >= viewx && tx0 <= viewx+cw)) {
-				grass.setPosition(tx0-viewx, ty0-viewy);
+			if((ty1-viewy >= 0 && ty0-viewy <= ch) && (tx1-viewx >= 0 && tx0-viewx <= cw)) {
+				grass.setPosition(tx0-viewx+offset, ty0-viewy+offset);
 				rw->draw(grass);
-			//}
+			}
 		}
 	}
 }
