@@ -8,12 +8,14 @@
 #include "Map.h"
 
 int main() {
-	sf::RenderWindow rw(sf::VideoMode(1024, 768), "test");
+	//sf::RenderWindow rw(sf::VideoMode::getDesktopMode(), "test", sf::Style::Fullscreen);
+	sf::RenderWindow rw(sf::VideoMode(800, 600), "test");
 	rw.setFramerateLimit(60);
 
 	rts::Map gameMap(24);
 
-	long clk = 0;
+	long mclk = 0;
+	sf::Clock uclk;
 
 	while(rw.isOpen()) {
         sf::Event event;

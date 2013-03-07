@@ -33,7 +33,7 @@ void rts::Map::initMap(int nTiles) {
 		this->tiles[i] = new Tile;
 
 	static sf::Texture tmp;
-	tmp.loadFromFile("grid.png");
+	tmp.loadFromFile("grass.png");
 	grass.setTexture(tmp);
 
 	this->viewx = viewy = 0;
